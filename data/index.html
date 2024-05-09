@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IC-706 Remote</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="topnav">
+      <h1>IC-706 Remote CONTROL</h1>
+    </div>
+    <div class="content">
+      <div class="card-grid">
+        <div class="card1">
+          <p class="card-title"><i class="fas fa-power-off"></i> POWER SWITCH</p>
+          <p>
+            <a href="on"><button class="button-on">ON</button></a>
+            <a href="off"><button class="button-off">OFF</button></a>
+            
+            
+            
+          </p>
+          <p class="state">Power: %STATE%</p>
+        </div>
+        
+        <div class="card4">
+          <p class="card-title"><i class="fas fa-microphone-alt"></i> PUSH TO TALK</p>
+          <p>
+            <a href="tx"><button class="button-tx">TX</button></a>
+            <a href="rx"><button class="button-rx">RX</button></a>
+          </p>
+          <p class="ptt">PTT: %PTT%</p>
+        </div>
+
+        <div class="card2">
+          <p class="card-title"><i class="fas fa-wifi"></i> WIFI CONFIGURATION</p>
+          <p class="ssid">SSID : %SSID%</p>
+          <p class="localip">WIFI IP : %LOCALIP%</p>
+          <p class="audioport">AUDIO PORT : %AUDIOPORT%</p>
+          <p class="pttport">PTT PORT : %PTTPORT%</p>
+          <p class="serialport">SERIAL PORT : %SERIALPORT%</p>
+          <p class="mode">MODE : %MODE%</p>
+        </div>
+
+        
+        <div class="card3">
+          <form action="/" method="POST">
+          <p>
+            <p class="card-title"><i class="fas fa-server"></i> REMOTE CONFIGURATION</p>
+            <label for="serverip">SERVER IP</label>
+            <input type="text" id ="serverip" name="serverip"><br>
+            <label for="audioport">AUDIO PORT</label>
+            <input type="text" id ="audioport" name="audioport"><br>
+            <label for="pttport">PTT PORT</label>
+            <input type="text" id ="pttport" name="pttport"><br>
+            <label for="serialport">SERIAL PORT</label>
+            <input type="text" id ="serialport" name="serialport"><br>
+            <input type="radio" id="modeset" name="server" value="server">
+            <label for="server">SERVER</label> 
+            <input type="radio" id="modeset" name="client" value="client">
+            <label for="client">CLIENT</label> 
+            <br>
+            <br>
+            <input type ="submit" value ="Submit">
+
+          </p>
+          </form>
+        </div>  
+        
+
+       
+          
+          
+       
+      </div>
+    </div>
+    
+  </body>
+</html>
