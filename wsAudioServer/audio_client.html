@@ -1,0 +1,423 @@
+<html>
+<head>
+    <title>IC-706 Monitor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="icon" href="image/favicon.ico" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js" charset="utf-8"></script>
+    <script src="https://unpkg.com/pcm-player"></script>
+    <script type="js/worker.js"></script>
+</head>
+<style>
+    body {
+        font-family: "Orbitron", sans-serif;
+    }
+
+         
+    .button {
+        border: none;
+        padding: 10px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-family: "Orbitron", sans-serif;
+    }
+    
+     .menubutton1{
+        border: none;
+        width : 84px;
+        height: 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-family: "Orbitron", sans-serif;
+        
+    }
+        .menubutton1:active {
+         background-color: #0084FF;
+         transition: 0.1s;
+    }
+    
+    .menubutton2{
+        border: none;
+        padding: 10px 63px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-family: "Orbitron", sans-serif;
+        
+    }
+    .menubutton2:active {
+         background-color: #0084FF;
+         transition: 0.1s;
+    }
+
+    .menubutton3{
+        border: none;
+        
+        width : 176px;
+        height: 40px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 4px;
+        font-family: "Orbitron", sans-serif;
+        
+    }
+    .menubutton3:active {
+         background-color: #0084FF;
+         transition: 0.1s;
+    }
+     .signal {
+        border: none;
+        width : 370px;
+        height: 30px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+       
+        font-family: "Orbitron", sans-serif;
+    }
+    
+    
+    h1 { 
+        display: block;
+        font-size: 20px;
+        margin-top: 0.1em;
+        margin-bottom: 0.1em;
+        margin-left: 0;
+        margin-right: 0;
+        font-weight: bold;
+        font-family: "Orbitron", sans-serif;
+        border: none;
+        color: #000000;
+        background-color: #6AE1E5;
+        text-align: center;
+        width: 370px;
+        border-radius: 4px;
+        }
+   .myDiv1 {
+        border: none;
+        margin-top: 0;
+        margin-bottom: 0;
+        margin-left: 10;
+        margin-right: 0;
+        font-size: 40px;
+        text-align: center;
+        display: inline-block;
+        font-family: "Orbitron", sans-serif;
+    }
+   .myDiv2 {
+        border: none;
+        margin-top: 0;
+        margin-bottom: 10;
+        margin-left: 10;
+        margin-right: 0;
+        font-size: 16px;
+        text-align: center;
+        display: inline-block;
+        font-family: "Orbitron", sans-serif;
+    }
+
+    .myDiv3 {
+        border: none;
+        margin-top: 0;
+        margin-bottom: 10;
+        margin-left: 155;
+        margin-right: 0;
+        font-size: 16px;
+        text-align: center;
+        display: inline-block;
+        font-family: "Orbitron", sans-serif;
+    }
+
+    
+    .menu {
+        
+        display: block;
+        width : 82px;
+        height: 28px;
+        margin-left: 0;
+        margin-right: 0;
+        border: 0px solid #6AE1E5;
+        border-radius: 4px;
+        color: #000000;
+        font-size: 20px;
+        text-align: center;
+        display: inline-block;
+        font-family: "Orbitron", sans-serif;
+    }
+
+    .freqsec {
+            display: block;
+            width : 370px;
+            height: 80px;
+            margin-top: 10;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 10;
+            border: 1px solid #6AE1E5;
+            border-radius: 4px;
+            
+        }
+    
+    
+    canvas {
+            display: block;
+            margin-left: 0;
+            margin-right: 0;
+            //border: 1px solid #6AE1E5;
+            //border-radius: 4px;
+            color: #F5B041;
+        }
+
+        .wave {
+            display: block;
+            width : 370px;
+            height: 160px;
+            margin-top: 10;
+            margin-left: 0;
+            margin-right: 0;
+            margin-bottom: 10;
+            border: 1px solid #6AE1E5;
+            border-radius: 4px;
+            
+        }
+        
+</style>
+<body>
+    <h1>IC-706 Monitor</h1>
+    
+    <div class="freqsec">
+    <span class="myDiv1" id="freqContainer">145.000.00 </span> <span>Mhz</span> <br>
+    <span class="myDiv2"id="vfoContainer">VFO A</span> &nbsp;
+    <span class="myDiv2"id="modeContainer">FM</span> 
+    <span class="myDiv3"id="mchContainer">00</span>&nbsp;<span>CH</span> <br>
+    </div>
+    <button id="connectBtn" class="button" onclick="connect()">Connect</button>
+    &nbsp;<i class="fas fa-volume-up"></i>
+    <input type="range" max="1" value="0.5" min="0" id="range" onchange="changeVolume(event)" step="0.1"><br />
+    <button id="modeBtn" class="menubutton1" >MODE</button>
+    <button id="tsBtn" class="menubutton1" >TS</button>
+    <button id="dispBtn" class="menubutton1" >DISP</button>
+    <button id="lockBtn" class="menubutton1" >LOCK</button> <br>
+    <div class="wave">
+    <canvas id="waveformCanvas" width="370" height="90"></canvas>  
+    <span class="signal">S1....3....5....7....9....20....40....60dB</span> 
+    <span class="menu"id="menuContainer">M1</span>&nbsp;&nbsp;
+    <span class="menu"id="f1Container">SPL</span>&nbsp;
+    <span class="menu"id="f2Container">A/B</span>&nbsp;
+    <span class="menu"id="f3Container">A=B</span><br>
+     </div>
+    <button id="menuBtn" class="menubutton1" >MENU</button>
+    <button id="f1Btn" class="menubutton1" >F-1</button>
+    <button id="f2Btn" class="menubutton1" >F-2</button>
+    <button id="f3Btn" class="menubutton1" >F-3</button> <br><br>
+   
+    <button id="mchupBtn" class="menubutton2" >CH UP</button>
+    <button id="mchdnBtn" class="menubutton2" >CH DN</button><br>
+    <button id="playBtn" class="menubutton3" onclick="playAudio()">Play</button>
+    <button id="stopBtn" class="menubutton3" onclick="stopAudio()">Stop</button><br>
+    
+    <script>
+     
+   
+    function addDarkmodeWidget() {
+        new Darkmode().showWidget();
+    }
+    
+    window.addEventListener('load', addDarkmodeWidget);
+
+    
+    var connectBtn = document.getElementById("connectBtn");
+    var pauseBtn = document.getElementById("pauseBtn");
+    var continueBtn = document.getElementById("continueBtn");
+    connectBtn.disabled = false;
+   
+    const playBtn = document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+        
+    let player;
+    let canvas;
+    let canvasContext;
+    let playon=1;
+    
+    
+    window.connect = function connect() {
+        connectBtn.disabled = !connectBtn.disabled;
+        
+        
+        
+        player = new PCMPlayer({
+            inputCodec: 'Int16',
+            channels: 1,
+            //sampleRate: 16000,
+            sampleRate: 44100,
+            
+        });
+        
+        canvas = document.getElementById('waveformCanvas');
+        canvasContext = canvas.getContext('2d');
+        
+        const WS_URL = 'ws;//youre ip:40040'; 
+        var ws = new WebSocket(WS_URL)
+        ws.binaryType = 'arraybuffer'
+        
+        ws.addEventListener('message', function (event) {
+           const data = event.data;
+           if(playon){
+           drawWaveform(data);
+           player.feed(data);
+           }
+           
+        });
+        
+        ws.onmessage = function (event) {
+        data = event.data;
+        
+          
+        if (data.startsWith("RIGDATA")) {
+        var str = data;
+        var freqdata = str.substr(7,10);
+        var vfodata = str.substr(17,1);
+        var modedata = str.substr(18,4);
+        var menu = str.substr(22,2);
+        var f1 = str.substr(24,3);
+        var f2 = str.substr(27,3);
+        var f3 = str.substr(30,3);
+        var mch = str.substr(33,2);
+        
+        
+        document.getElementById('freqContainer').innerText = freqdata;
+        document.getElementById('vfoContainer').innerText = "VFO " + vfodata;
+        document.getElementById('modeContainer').innerText = modedata;
+        document.getElementById('menuContainer').innerText = menu;
+        document.getElementById('f1Container').innerText = f1;
+        document.getElementById('f2Container').innerText = f2;
+        document.getElementById('f3Container').innerText = f3;
+        document.getElementById('mchContainer').innerText = mch;
+  
+        } 
+    
+        };
+               
+        document.getElementById('menuBtn').addEventListener('click', function () {
+            ws.send('BTN01');
+        });
+        
+        document.getElementById('f1Btn').addEventListener('click', function () {
+            ws.send('BTN02');
+        });
+        document.getElementById('f2Btn').addEventListener('click', function () {
+            ws.send('BTN03');
+        });
+        document.getElementById('f3Btn').addEventListener('click', function () {
+            ws.send('BTN04');
+        });
+        document.getElementById('modeBtn').addEventListener('click', function () {
+            ws.send('BTN05');
+        });
+            
+        document.getElementById('tsBtn').addEventListener('click', function () {
+            ws.send('BTN06');
+        });
+        document.getElementById('dispBtn').addEventListener('click', function () {
+            ws.send('BTN07');
+        });
+        document.getElementById('lockBtn').addEventListener('click', function () {
+            ws.send('BTN08');
+        });
+        document.getElementById('mchupBtn').addEventListener('click', function () {
+            ws.send('BTN09');
+        });
+        document.getElementById('mchdnBtn').addEventListener('click', function () {
+            ws.send('BTN10');
+        });
+        
+        document.getElementById('ctlon').addEventListener('click', function () {
+            ws.send('BTN15');
+        });
+        document.getElementById('ctloff').addEventListener('click', function () {
+            ws.send('BTN16');
+        });
+
+    }
+    
+     function playAudio() {
+            playBtn.disabled = true;
+            stopBtn.disabled = false;
+            
+            playon = 1;
+            ws.send('BTN15');
+            player.continue()
+        }
+
+        function stopAudio() {
+            
+            playBtn.disabled = false;
+            stopBtn.disabled = true;
+            
+            playon = 0;
+            
+            if (player) {
+                ws.send('BTN16');
+                player.pause()
+                
+            }
+        }
+    
+    
+    window.changeVolume = function changeVolume(e) {
+        player.volume(document.querySelector('#range').value)
+    }
+  
+    window.drawWaveform = function drawWaveform(data) {
+        canvasContext.clearRect(0, 0, canvas.width, canvas.height);
+
+        const dataArray = new Int16Array(data);
+        const bufferLength = dataArray.length;
+
+        canvasContext.beginPath();
+        const sliceWidth = canvas.width * 1 / bufferLength;
+        let x = 0;
+        for (let i = 0; i < bufferLength; i++) {
+            const v = dataArray[i] / 98304.0;
+            const y = (v + 0.5) * canvas.height;
+            if (i === 0) {
+                canvasContext.moveTo(x, y);
+            } else {
+                canvasContext.lineTo(x, y);
+            }
+            x += sliceWidth;
+        }
+        canvasContext.strokeStyle = '#0084FF';
+        canvasContext.stroke();
+    }
+           
+  
+          
+    
+</script>
+</body>
+</html>
