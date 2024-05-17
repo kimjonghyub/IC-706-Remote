@@ -1,5 +1,9 @@
 https://youtu.be/KjNcXskDi7w?si=co8ksQmIHQCQsU3r
 # IC-706-Remote
+![image diagram](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/f5456743-14b6-4478-a748-644a5889d70f)
+![web1](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/73559c98-4533-41f2-b43e-10e79697cb25)
+
+
 ESP32 AudioKit A1S IC-706 Remote Arduino Code
 purpose
  Building a  device for operating a  remote radio station  based on the Icom  IC-706 model .
@@ -36,7 +40,8 @@ The power on/off process has been implemented for eye trickery.
 The audio transmitting/receiving part  uses the OPUS codec to  compress and  transmit data. It is transmitted in CD-class sound quality to improve quality, and the data load is significant.  When lowered, the sound quality  can make the damage or  control more agile.
 
 The PTT implementation part actually  operates PTT as  serial data rather than  GND contact signal for the panel and  body. The microphone connector has a PTT port, but internally, it is all operated by serial communication.
- 
+ ![wire](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/ef120fc0-5443-470c-bfe0-4ad47587ffe5)
+
 Figure 1  device configuration  diagram
  Use  LRXD, LTXD, AF, MIC, PWK, 8V, GND on the OPC-581  cable to  connect to ESP32 AudioKit  A1S (hereinafter A1S ).
  
@@ -48,10 +53,13 @@ Client
 The client  has a WIFI Management Web server running together . The files in the DATA folder should be uploaded to the ESP32 internal repository via ESP32 Sketch Data Upload.
 In other words, you have to upload twice  separately from the sketch.
  After uploading,  A1S needs to  set up Wi-Fi. At first run,  192.168.4.1  will operate in  AP mode and  insert the  SSID PASSWORD of the  router you  want to  use. Then, when you  get an IP from the router and  connect to the  client IP, you  will see the  IC-706 Remote Control page,  where you  can enter the IP on the server side  and the  port to  use. Audio:4000  / PTT:40010 / Serial:40020 and the client setup is  complete.
- 
+ ![wifi1](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/ddd1cbc7-3359-462b-9724-2d443abcded9)
+
 Figure 2 WiFi  Management Page
- 
+ ![wifi2](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/e96cd0c5-e427-46bb-a552-1888346d27fc)
+
 Figure 3  Client Setup  Page
+![client](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/5a3dfcab-2f4f-484d-bb0c-99b0894542b3)
 
 
 
@@ -61,14 +69,16 @@ Figure 3  Client Setup  Page
 Setting Arduino on the Server Side
 On the server side, the wifi  management server is  not working.  You must put ssid/password in the direct code. Make the  server connect well to the  router,  find the  server IP,  put it in from the client side, and  connect to  each other . If you don't configure node servers and web controls, that's all.
  To control the  node server and web  using Raspberry Pi, you  can connect the uart microusb on the  A1S side to the Raspberry Pi  USB. (To get serial data)
- 
+ ![server](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/b3673518-7deb-46d3-8689-c007024c4ca4)
+
 
 Raspberry pie.
  Just enter pi@raspberrypi:~  $ suo  apt-get install nodejsnpm and you' re done with the  server.
  Copy and  insert the shared wsAudioServer  folder into the raspberry  pie.
 Running pi@raspberrypi:~/wsAudioServer $nodeserver.js completes server operation
 Modify server.js file
- 
+ ![serverjs](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/0b0cf4ec-4b7f-488b-863d-197c1e5eece4)
+
 
 const  WS_PORT = process.env.WS_PORT  || || 40040 ;//audio socket port
 const  HTTP_PORT = process.env.HTTP_PORT  || || 8080 ;//Webpage  access port
@@ -76,19 +86,22 @@ ConstitutionalPortPath = '/dev/ttyUSB0 ';//A1S serial communication connection
 The item is set to be correct by the user.
  
 Modify Audio_client.html file
- 
+ ![audiohtml](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/12a1fc81-fcdc-4433-8a44-851290034788)
+
 const  WS_URL =  'ws://61.77.62.48:40040';  The item  sets  its own Raspberry Pi IP .
 
 In Raspberry Pi, the  audio signal is  taken from  IC-706 and the  microphone input is  put in . (for transmitting  audio from  web pages)
 Also, control signals must be imported from A1S  ( A1S  is USB  connected to Raspberry Pi, so it  is a  connection to  exchange serial data).
-
+ ![web1](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/3fbab52a-fc3f-4fbc-b6fe-1b20887b7831)
 
 
 
 
 Web control screen yet (signal display and frequency not changed improvements)
 Node.js server needs to be rerun periodically due to intermittent down (improvements)
- 
+
+
+![sch](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/a3ef7482-e3e7-4738-8d32-443cc82e746a)
 
 
 
