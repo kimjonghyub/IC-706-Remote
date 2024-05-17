@@ -1,9 +1,8 @@
 https://youtu.be/KjNcXskDi7w?si=co8ksQmIHQCQsU3r
+![KakaoTalk_20240517_195145051](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/edb3428a-baf4-489a-b66a-e5b123dbc3e9)
+
 # IC-706-Remote
 ![image diagram](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/f5456743-14b6-4478-a748-644a5889d70f)
-![web1](https://github.com/kimjonghyub/IC-706-Remote/assets/169359949/73559c98-4533-41f2-b43e-10e79697cb25)
-
-
 ESP32 AudioKit A1S IC-706 Remote Arduino Code
 purpose
  Building a  device for operating a  remote radio station  based on the Icom  IC-706 model .
